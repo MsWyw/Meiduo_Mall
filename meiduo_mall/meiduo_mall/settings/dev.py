@@ -104,6 +104,12 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379/1",
         "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
+    },
+    "verify_codes": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {"CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
     }
 }
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
@@ -207,3 +213,5 @@ REST_FRAMEWORK = {
     # 指定异常处理的函数
     'EXCEPTION_HANDLER': 'meiduo_mall.utils.exceptions.exception_handler',
 }
+
+AUTH_USER_MODEL = "users.User"# 官方声明只需要填写<子应用目录，模型类名>
