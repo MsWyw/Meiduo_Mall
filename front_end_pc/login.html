@@ -5,6 +5,10 @@
 	<title>美多商城-登录</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type='text/javascript' src="js/vue-2.5.16.js"></script>
+	<script type='text/javascript' src="js/axios-0.18.0.min.js"></script>
+	<script type='text/javascript' src="js/hosts.js"></script>
+	<script type='text/javascript' src="js/login.js"></script>
 </head>
 <body>
 	<div class="login_top clearfix">
@@ -19,14 +23,14 @@
 					<a href="javascript:;" class="cur">账户登录</a>
 				</div>
 				<div class="form_con">
-					<div class="form_input cur">
-						<form>
-							<input type="text" name="username" class="name_input" placeholder="请输入用户名">
-							<div class="user_error">输入错误</div>
-							<input type="password" name="pwd" class="pass_input" placeholder="请输入密码">
-							<div class="pwd_error">输入错误</div>
+					<div class="form_input cur" id="app">
+						<form id="login_form" @submit.prevent="on_submit">
+							<input type="text" v-model="username" @blur="check_username" name="" class="name_input" placeholder="请输入用户名或手机号">
+							<div class="user_error" v-show="error_username" v-cloak>{{error_username_message}}</div>
+							<input type="password" v-model="password" @blur="check_password" name="pwd" class="pass_input" placeholder="请输入密码">
+							<div class="pwd_error" v-show="error_password" v-cloak>{{ error_password_message }}</div>
 							<div class="more_input clearfix">
-								<input type="checkbox" name="">
+								<input type="checkbox" v-model="remember" name="">
 								<label>记住登录</label>
 								<a href="/find_password.html">忘记密码</a>
 							</div>
